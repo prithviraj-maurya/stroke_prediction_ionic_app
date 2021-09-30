@@ -1,5 +1,7 @@
 {
   "name": "model_preds",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

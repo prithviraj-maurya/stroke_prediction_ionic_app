@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PredictionsComponent } from '../predictions/predictions.component';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -8,27 +9,31 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        path: 'parameters',
+        loadChildren: () => import('../Parameters/parameters.module').then(m => m.ParametersModule)
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'diseases',
+        loadChildren: () => import('../Diseases/diseases.module').then(m => m.DiseasesModule)
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'symptoms',
+        loadChildren: () => import('../Symptoms/symptoms.module').then(m => m.SymptomsModule)
+      },
+      {
+        path: 'predict',
+        component: PredictionsComponent
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/diseases',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/diseases',
     pathMatch: 'full'
   }
 ];

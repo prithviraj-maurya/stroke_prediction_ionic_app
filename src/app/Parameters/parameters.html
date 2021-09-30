@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Parameters
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="parametersForm" (ngSubmit)="onSubmit()">
+    <ion-item *ngFor="let param of params">
+      <ion-label>{{ param.label }}</ion-label>
+      <ion-input type="number" *ngIf="param.type === 'number'" placeholder="Enter {{param.label}}" class="ion-text-right"
+        formControlName="{{param.field}}">
+      </ion-input>
+      <ion-select multiple="false" placeholder={{param.label}} *ngIf="param.type === 'dropdown'"
+        formControlName="{{param.field}}">
+        <ion-select-option *ngFor="let option of param.options" value={{option.value}}>
+          {{ option.label }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button type="submit" expand="full" fill="outline" slot="end">Update</ion-button>
+    <ion-button expand="full" fill="outline" slot="end" color="danger" *ngIf="paramsStored" (click)="deleteParams()">Clear All</ion-button>
+  </form>
+</ion-content>
