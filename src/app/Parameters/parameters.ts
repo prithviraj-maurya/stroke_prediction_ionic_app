@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
+
 import { DiseasesService } from '../diseases.service';
 import { commonParams } from '../model/Diseases';
 
@@ -14,11 +16,47 @@ export class Parameters {
   parametersForm: FormGroup;
   params = [];
   paramsStored = false;
-  constructor(private diseaseService: DiseasesService, public toastController: ToastController) {
+  constructor(private diseaseService: DiseasesService, public toastController: ToastController,
+    public alertController: AlertController) {
+      this.initializeParams();
+  }
+
+  initializeParams() {
     this.params = commonParams || [];
     this.getStoredParams();
     this.createForm(this.params);
     console.log(this.params);
+  }
+
+  ionViewDidEnter() {
+    this.initializeParams();
+  }
+
+  async showAlert(header, message) {
+    const alert = await this.alertController.create({
+      header: header || '',
+      message: message,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {}
+        }, {
+          text: 'Confirm',
+          handler: () => {
+            this.deleteParams();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  clearAll() {
+    this.showAlert(
+      "",
+      "<strong>Are you sure you want to remove all parameters?<strong>"
+      );
   }
 
   createForm(params) {

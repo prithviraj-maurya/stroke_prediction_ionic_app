@@ -21,6 +21,6 @@
       </ion-select>
     </ion-item>
     <ion-button type="submit" expand="full" fill="outline" slot="end">Update</ion-button>
-    <ion-button expand="full" fill="outline" slot="end" color="danger" *ngIf="paramsStored" (click)="deleteParams()">Clear All</ion-button>
+    <ion-button expand="full" fill="outline" slot="end" color="danger" *ngIf="paramsStored" (click)="clearAll()" fill="solid">Clear All</ion-button>
   </form>
 </ion-content>
