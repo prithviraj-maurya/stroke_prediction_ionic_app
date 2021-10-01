@@ -1,0 +1,6 @@
+{
+	"appId": "com.example.app",
+	"appName": "model_preds",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

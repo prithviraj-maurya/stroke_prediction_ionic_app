@@ -47,7 +47,6 @@ export class Diseases implements OnInit {
     this.params = this.selectedDisease ? this.selectedDisease.parameters : [];
     this.getDiseaseStoredValues();
     this.createForm(this.params);
-    console.log(this.params);
   }
 
   getDiseaseStoredValues() {

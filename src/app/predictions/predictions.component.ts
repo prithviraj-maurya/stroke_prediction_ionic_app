@@ -9,22 +9,16 @@ import { DiseasesService } from '../diseases.service';
 })
 export class PredictionsComponent implements OnInit {
 
-  prediction;
-  parameters;
-  disease;
-  risks;
-  recommendations;
+  predictedResponse;
+  importantFeature;
   constructor(private route: ActivatedRoute, private diseaseService: DiseasesService) { }
 
   ngOnInit() {
     this.route.params.subscribe(result => {
       const disease = result['selectedDisease'];
-      const predictions = this.diseaseService.predictedDisease[disease];
-      this.prediction = predictions['prediction'];
-      this.risks = predictions['risks'];
-      this.recommendations = predictions['recommendations'];
-      this.parameters = predictions['params'];
-      this.disease = predictions['selectedDisease'].label;
+      this.predictedResponse = this.diseaseService.predictedDisease[disease];
+      const features = this.predictedResponse.feature_importances
+      this.importantFeature = this.predictedResponse.params[features && features.indexOf(Math.max(...features))].label || '';
     });
   }
 }

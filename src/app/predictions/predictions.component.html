@@ -6,20 +6,27 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-card>
+
+<ion-card [ngStyle]="{ 'border': predictedResponse.prediction > 50 ? '2px solid red': '2px solid green'}">
   <ion-card-header>
     <ion-card-title>
       Prediction
     </ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    You have <b>{{prediction}}%</b> chance of having <b>{{disease}}</b>
+    You have <b>{{predictedResponse.prediction}}%</b> chance of having <b>{{predictedResponse.selectedDisease.label}}</b>
   </ion-card-content>
   <ion-card-content>
+    The parameter which contributes highly is <b>{{ importantFeature }}</b>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-content>
     <ion-label><b>Risks</b></ion-label>
-    <p *ngFor="let risk of risks">- {{ risk }}</p>
+    <p *ngFor="let risk of predictedResponse.risks">- {{ risk }}</p>
     <br>
     <ion-label><b>Recommendations</b></ion-label>
-    <p *ngFor="let recommendation of recommendations">- {{ recommendation }}</p>
+    <p *ngFor="let recommendation of predictedResponse.recommendations">- {{ recommendation }}</p>
   </ion-card-content>
 </ion-card>

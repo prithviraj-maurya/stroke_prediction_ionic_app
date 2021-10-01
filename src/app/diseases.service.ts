@@ -39,7 +39,8 @@ export class DiseasesService {
       selectedDisease: selectedDisease,
       params: parameters,
       risks: predictions['risks'],
-      recommendations: predictions['recommendations']
+      recommendations: predictions['recommendations'],
+      feature_importances: predictions['feature_importances']
     };
   }
 
